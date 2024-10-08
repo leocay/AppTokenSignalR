@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Windows;
@@ -19,12 +20,15 @@ namespace AppTokenSignalR
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _token;
-        private HubConnection _connection;
+        private string _token = string.Empty;
+        private HubConnection? _connection;
+        private MainWindowViewModel mainWindowViewModel;
 
         public MainWindow()
         {
+            mainWindowViewModel = new MainWindowViewModel();    
             InitializeComponent();
+            this.DataContext = mainWindowViewModel;
         }
 
         // Nút Login: Lấy JWT Token
@@ -33,7 +37,7 @@ namespace AppTokenSignalR
             try
             {
                 // URL của API để lấy token
-                var apiUrl = "http://192.168.0.40:5154/api/auth/login";
+                var apiUrl = "http://192.168.1.49:5154/api/auth/login";
 
                 // Thông tin đăng nhập (giả sử là "testuser"/"password")
                 var loginData = new
@@ -83,19 +87,16 @@ namespace AppTokenSignalR
             try
             {
                 _connection = new HubConnectionBuilder()
-                    .WithUrl("http://192.168.0.40:5154/hub/chat", options =>
+                    .WithUrl("http://192.168.1.49:5154/hub/chat", options =>
                     {
-                        options.AccessTokenProvider = () => Task.FromResult(_token);
+                        options.AccessTokenProvider = () => Task.FromResult(_token)!;
                     })
                     .WithAutomaticReconnect()
                     .Build();
 
-                _connection.On<string, string>("ReceiveMessage", (user, message) =>
+                _connection.On<ObservableCollection<AccountInforModel>>("ReceiveNewMap", (list) =>
                 {
-                    LogBox.Dispatcher.Invoke(() =>
-                    {
-                        LogBox.Text += $"{user}: {message}\n";
-                    });
+                    mainWindowViewModel.ListAccountInforModels = list;
                 });
 
                 await _connection.StartAsync();

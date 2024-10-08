@@ -4,5 +4,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:AppTokenSignalR"
     StartupUri="MainWindow.xaml">
-    <Application.Resources />
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TableHeader" TargetType="Label">
+                <Setter Property="Control.Foreground" Value="#2c6cdb" />
+                <Setter Property="Control.FontFamily" Value="Times New Roman" />
+                <Setter Property="Control.FontWeight" Value="Bold" />
+                <Setter Property="Control.FontSize" Value="15" />
+            </Style>
+
+            <Style x:Key="TableCells" TargetType="Label">
+                <Setter Property="Control.FontFamily" Value="Times New Roman" />
+                <Setter Property="Control.FontSize" Value="15" />
+            </Style>
+
+            <Style x:Key="LabelCenter" TargetType="Label">
+                <Setter Property="Control.Width" Value="1000" />
+                <Setter Property="Control.HorizontalAlignment" Value="Center" />
+                <Setter Property="Control.VerticalAlignment" Value="Center" />
+                <Setter Property="Control.HorizontalContentAlignment" Value="Center" />
+                <Setter Property="Control.VerticalContentAlignment" Value="Center" />
+                <Setter Property="Control.Foreground" Value="Black" />
+                <Setter Property="Control.FontFamily" Value="Times New Roman" />
+                <Setter Property="Control.FontSize" Value="15" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>
