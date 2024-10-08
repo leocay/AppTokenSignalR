@@ -1,0 +1,14 @@
+﻿<Window x:Class="AppTokenSignalR.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppTokenSignalR"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="50,50,0,0" Click="LoginButton_Click"/>
+        <Button Content="Connect" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="30" Margin="0,50,50,0" Click="ConnectButton_Click" />
+        <TextBox Name="LogBox" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="100" Margin="10" IsReadOnly="True"/>
+    </Grid>
+</Window>
